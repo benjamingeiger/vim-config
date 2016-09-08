@@ -109,3 +109,6 @@
 [submodule "bundle/xterm-color-table.vim"]
 	path = bundle/xterm-color-table.vim
 	url = https://github.com/guns/xterm-color-table.vim.git
+[submodule "bundle/jedi-vim"]
+	path = bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
