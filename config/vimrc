@@ -1,0 +1,24 @@
+" Configure pathogen
+call pathogen#runtime_append_all_bundles()
+
+" General
+let mapleader=","
+let g:mapleader=","
+
+source ~/.vim/config/filetype.vim
+source ~/.vim/config/appearance.vim
+source ~/.vim/config/defaults.vim
+source ~/.vim/config/ui.vim
+source ~/.vim/config/options.vim
+source ~/.vim/config/commands.vim
+source ~/.vim/config/statusline.vim
+
+source ~/.vim/config/easymotion.vim
+source ~/.vim/config/nerdtree.vim
+source ~/.vim/config/taglist.vim
+source ~/.vim/config/xterm.vim
+
+source ~/.vim/config/folding.vim
+
+" Reload vimrc on save
+autocmd! bufwritepost .vimrc source ~/.vimrc
