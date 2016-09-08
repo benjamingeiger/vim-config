@@ -1,0 +1,252 @@
+" Configure pathogen
+call pathogen#runtime_append_all_bundles()
+
+" General
+let mapleader=","
+let g:mapleader=","
+
+" Enable filetype plugins
+filetype off
+syntax on
+filetype plugin on
+filetype indent on
+
+" Reload vimrc on save
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" Quick commands
+" Quick save
+nmap <leader>w :w!<cr>
+" Strip CRs
+noremap <Leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+" Quick reformat paragraph
+nmap <leader>q gqip
+
+" Keep selection when shifting
+vnoremap > >gv
+vnoremap < <gv
+
+" Add 'gp' command to select pasted text
+nnoremap gp `[v`]
+
+" Automatically select pasted text
+nmap <leader>y :TlistOpen<cr>
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Close_On_Select=1
+
+" Text, tab, and indent stuff
+set tabstop=8
+set smarttab
+set shiftwidth=8
+set autoindent
+set noexpandtab
+set backspace=indent,eol,start
+
+" User interface
+
+syntax on
+set number      " Show line numbers
+
+set ruler       " Show our position 
+set hlsearch    " Highlight what we're searching for
+
+set incsearch   " Search incrementally
+set showmatch   " Blink matching brackets
+
+set ignorecase  " Case insensitive search
+set smartcase
+
+set magic       " Turn on regex magic
+
+" Left and right cursor keys wrap to next/previous line
+set whichwrap+=<,>,h,l,[,]
+
+" NERDTree configuration
+
+let NERDTreeQuitOnOpen = 1
+
+nnoremap <Leader>t :let NERDTreeQuitOnOpen = 1<bar>NERDTreeToggle<CR>
+nnoremap <Leader>T :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
+
+" EasyMotion configuration
+
+let EasyMotion_leader_key = '<Leader>'
+
+function! SetColorColumn(...)
+        if has("gui_running") || &t_Co >= 256
+                if a:0 > 0
+                        let &colorcolumn = a:1
+                else
+                        let &colorcolumn = 80
+                endif
+                "highlight ColorColumn ctermbg=234 guibg=#101010
+                highlight ColorColumn ctermbg=255 guibg=#eeeeee
+        endif
+endfunction
+
+autocmd FileType python call SetPythonOptions()
+function! SetPythonOptions()
+        set shiftwidth=4
+        set tabstop=4
+        set expandtab
+
+        highlight ExtraWhitespace ctermbg=Red guibg=#592929
+        " syntax match ExtraWhitespace /\s\+\%#\@<!$/ containedin=ALL
+
+        "autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+        
+        "autocmd InsertEnter * syntax match ExtraWhitespace /\S/
+        "autocmd InsertLeave * syntax match ExtraWhitespace /\s/
+        
+        "exec 'syntax match ExtraWhitespace /\s\+\%#\@<!$/ containedin=ALL'
+
+        set list
+
+        call SetColorColumn()
+        "
+        "set listchars=trail:␣
+endfunction
+
+autocmd FileType sml call SetSMLOptions()
+function! SetSMLOptions()
+        set tw=0
+        set list
+        set expandtab
+        set tabstop=2
+        set shiftwidth=2
+        call SetColorColumn()
+endfunction
+
+autocmd FileType tex call SetTexOptions()
+autocmd FileType plaintex call SetTexOptions()
+function! SetTexOptions()
+        set wrap
+        set tw=78
+        call SetColorColumn(78)
+endfunction
+
+autocmd FileType c call SetCOptions()
+autocmd FileType cpp call SetCOptions()
+autocmd FileType opencl call SetCOptions()
+function! SetCOptions()
+        set tw=0
+        set list
+        set expandtab
+        set tabstop=4
+        set shiftwidth=4
+        set cinoptions=t0
+        call SetColorColumn()
+endfunction
+
+autocmd FileType java call SetJavaOptions()
+function! SetJavaOptions()
+        set tw=0
+        set list
+        set expandtab
+        set tabstop=3 " Why, jGrasp, why?
+        set shiftwidth=3
+        call SetColorColumn()
+endfunction
+
+autocmd FileType ruby call SetRubyOptions()
+function! SetRubyOptions()
+        set tabstop=2
+        set shiftwidth=2
+        set expandtab
+endfunction
+
+autocmd FileType yacc call SetYaccOptions()
+function! SetYaccOptions()
+        set list
+        set tabstop=4
+        set shiftwidth=4
+        set expandtab
+endfunction
+
+" File type stuff
+
+set ofu=syntaxcomplete#Complete
+highlight Pmenu ctermbg=238 gui=bold
+
+" Enable bracketed paste mode
+if &term =~ "xterm.*" || &term =~ "screen.*"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function! XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+
+    set mouse=a
+endif
+
+" -- old stuff under here
+
+autocmd BufNewFile,BufRead *.html.erb set filetype=eruby
+autocmd BufNewFile,BufRead *.rb set filetype=ruby
+
+"autocmd BufNewFile,BufRead *.cl set filetype=opencl
+autocmd BufNewFile,BufRead *.cl set filetype=c
+
+
+"set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+
+"function! WordCount()
+"  let old_status = v:statusmsg
+"  exe "silent normal g\<c-g>"
+"  let word_count = str2nr(split(v:statusmsg)[11])
+"  let v:statusmsg = old_status
+"  return word_count
+"endfunction
+
+set laststatus=2
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y\ wc:%{WordCount()}%=%-16(\ %l,%c%V\ %)%P
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c%V\ %)%P
+
+set statusline=                         " clear the status line
+set statusline+=[%n]\                   " buffer number
+set statusline+=%<                      " truncate here
+set statusline+=%.99F\                  " path to the file, max 99 chars, followed by space
+set statusline+=%=                      " right-align
+set statusline+=%m                      " modified flag
+set statusline+=%h                      " help buffer flag
+set statusline+=%w                      " preview buffer flag
+set statusline+=%r                      " readonly flag
+set statusline+=%y                      " file type
+set statusline+=\ %l,%c%V\              " line number, column number, virtual column number
+set statusline+=%P\                     " percentage through the file
+
+set listchars=trail:␣,tab:⇥ᐧ,nbsp:⍽,extends:▸,precedes:◂
+
+"colorscheme vividchalk
+colorscheme default
+"colorscheme liquidcarbon
+"set background=dark
+set background=light
+
+highlight SpecialKey ctermfg=241 guifg=#101010
+
+" Set up Molokai
+"colorscheme molokai
+"set background=dark
+"hi Normal ctermbg=0 guibg=#000000
+
+set printoptions=paper:letter,syntax:a,number:y,formfeed:y
+
+nnoremap <f2> :let @/ = ""<cr>
+
+set clipboard=unnamed
+
+
+highlight CursorLine cterm=NONE ctermbg=235 guibg=#101010
+highlight CursorColumn cterm=NONE ctermbg=235 guibg=#101010
+nnoremap <Leader>c :set cursorline cursorcolumn<CR>
+
+au BufRead,BufNewFile *.pde set filetype=arduino
+au BufRead,BufNewFile *.ino set filetype=arduino
+
+au BufRead,BufNewFile *.dism set filetype=dism
+
