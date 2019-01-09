@@ -31,30 +31,43 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-haml'
 Bundle 'gi1242/vim-tex-autoclose'
 Bundle 'matze/vim-tex-fold'
+Plugin 'pangloss/vim-javascript'
+Plugin 'ternjs/tern_for_vim'
 
 Bundle 'kien/ctrlp.vim'
 Bundle 'motemen/git-vim'
 "Bundle 'davidhalter/jedi-vim'
 "Bundle 'davidhalter/jedi'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'benjamingeiger/nerdtree'
-Bundle 'msanders/snipmate.vim'
-Bundle 'tpope/vim-abolish'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-endwise'
+""Bundle 'benjamingeiger/nerdtree'
+""Bundle 'msanders/snipmate.vim'
+"Bundle 'tpope/vim-abolish'
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'tpope/vim-endwise'
 Bundle 'nvie/vim-flake8'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'tpope/vim-repeat'
-Bundle 'pielgrzym/vim-sparkup'
+"Bundle 'tpope/vim-repeat'
+"Bundle 'pielgrzym/vim-sparkup'
 Bundle 'tpope/vim-surround'
 Bundle 'justinmk/vim-syntax-extra'
-Bundle 'int3/vim-taglist-plus'
+"Bundle 'int3/vim-taglist-plus'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'vimoutliner/vimoutliner'
-Bundle 'metalelf0/vimt0d0'
-Bundle 'guns/xterm-color-table.vim'
+"Bundle 'vimoutliner/vimoutliner'
+"Bundle 'metalelf0/vimt0d0'
+"Bundle 'guns/xterm-color-table.vim'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+
+"Plugin 'jlanzarotta/bufexplorer'
+"Plugin 'tpope/vim-vinegar'
+
+"Plugin 'tmhedberg/SimpylFold'
+"Plugin 'vim-scripts/indentpython.vim'
+Plugin 'scrooloose/syntastic'
+
+"Plugin 'tpope/vim-ragtag'
 
 " Non-git plugins
 
@@ -80,7 +93,8 @@ source ~/.vim/config/commands.vim
 source ~/.vim/config/statusline.vim
 
 source ~/.vim/config/easymotion.vim
-source ~/.vim/config/nerdtree.vim
+"source ~/.vim/config/nerdtree.vim
+source ~/.vim/config/ultisnips.vim
 source ~/.vim/config/taglist.vim
 source ~/.vim/config/xterm.vim
 

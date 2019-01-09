@@ -35,3 +35,10 @@ autocmd FileType cpp
 	\ runtime ~/.vim/ftplugin/c.vim
 autocmd FileType opencl
 	\ runtime ~/.vim/ftplugin/c.vim
+
+function! PositionCursorFromViminfo()
+  if !(bufname("%") =~ '\(COMMIT_EDITMSG\)') && line("'\"") > 1 && line("'\"") <= line("$")
+    exe "normal! g`\""
+  endif
+endfunction
+:au BufReadPost * call PositionCursorFromViminfo()

@@ -1,5 +1,9 @@
 set number      " Show line numbers
-set ruler       " Show our position 
+"set number relativenumber
+
+nnoremap <f3> :set relativenumber!<cr>
+
+set ruler       " Show our position
 set hlsearch    " Highlight what we're searching for
 
 set incsearch   " Search incrementally

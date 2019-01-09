@@ -1,3 +1,3 @@
 " EasyMotion configuration
 
-let EasyMotion_leader_key = '<Leader>'
+let EasyMotion_leader_key = '<Leader><Leader>'

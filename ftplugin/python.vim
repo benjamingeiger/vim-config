@@ -1,6 +1,3 @@
-" This beauty remembers where you were the last time you edited the file, and returns to the same position.
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
 setl list
 
 setl tabstop=4
@@ -20,3 +17,6 @@ let python_highlight_all=1
 syntax on
 
 call SetColorColumn()
+
+let b:syntastic_python_python_exec = syntastic#util#parseShebang()['exe']  =~# '\m\<python3' ? 'python3' : 'python'
+let b:syntastic_python_flake8_exe = syntastic#util#parseShebang()['exe']  =~# '\m\<python3' ? 'python3 -m flake8' : 'flake8'

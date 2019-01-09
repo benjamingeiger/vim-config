@@ -1,12 +1,25 @@
-"set background=light
-set background=dark
 colorscheme default
 "colorscheme summerfruit256
 "colorscheme visualstudiolight
 
-highlight SpecialKey ctermfg=255 guifg=#101010
 
-"highlight LineNr ctermfg=253
+" Light background
+
+"set background=light
+
+"highlight SpecialKey ctermfg=238 guifg=#101010
+"highlight LineNr ctermfg=251
+"highlight CursorLineNr ctermfg=37
+"highlight ColorColumn ctermbg=254 guibg=#eeeeee
+
+" Dark background
+
+set background=dark
+
+highlight SpecialKey ctermfg=238 guifg=#101010
+highlight LineNr ctermfg=238
+highlight CursorLineNr ctermfg=22
+highlight ColorColumn ctermbg=236 guibg=#101010
 
 function! SetColorColumn(...)
         if has("gui_running") || &t_Co >= 256
@@ -16,7 +29,5 @@ function! SetColorColumn(...)
                 else
                         let &colorcolumn = 81
                 endif
-		highlight ColorColumn ctermbg=234 guibg=#101010
-                "highlight ColorColumn ctermbg=255 guibg=#eeeeee
         endif
 endfunction
