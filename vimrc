@@ -6,8 +6,15 @@ silent! source $VIMRUNTIME/defaults.vim
 
 set nocompatible
 filetype off
+
+if has('win32') || has('win64')
+	let s:vimdir = $HOME . '/vimfiles/'
+else
+	let s:vimdir = $HOME . '/.vim/'
+endif
+
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin(s:vimdir . '/bundle')
 
 " Required for Vundle.
 Bundle 'VundleVim/Vundle.vim'
@@ -84,21 +91,22 @@ filetype on
 let mapleader=","
 let g:mapleader=","
 
-source ~/.vim/config/filetype.vim
-source ~/.vim/config/appearance.vim
-source ~/.vim/config/defaults.vim
-source ~/.vim/config/ui.vim
-source ~/.vim/config/options.vim
-source ~/.vim/config/commands.vim
-source ~/.vim/config/statusline.vim
+exec "source " . s:vimdir . "/config/filetype.vim"
+exec "source " . s:vimdir . "/config/appearance.vim"
+exec "source " . s:vimdir . "/config/defaults.vim"
+exec "source " . s:vimdir . "/config/ui.vim"
+exec "source " . s:vimdir . "/config/options.vim"
+exec "source " . s:vimdir . "/config/commands.vim"
+exec "source " . s:vimdir . "/config/statusline.vim"
 
-source ~/.vim/config/easymotion.vim
-"source ~/.vim/config/nerdtree.vim
-source ~/.vim/config/ultisnips.vim
-source ~/.vim/config/taglist.vim
-source ~/.vim/config/xterm.vim
+exec "source " . s:vimdir . "/config/easymotion.vim"
+exec "source " . s:vimdir . "/config/ultisnips.vim"
+exec "source " . s:vimdir . "/config/taglist.vim"
+exec "source " . s:vimdir . "/config/xterm.vim"
 
-source ~/.vim/config/folding.vim
+exec "source " . s:vimdir . "/config/folding.vim"
+
+" exec "source " . s:vimdir . "/config/nerdtree.vim"
 
 " Reload vimrc on save
 autocmd! bufwritepost .vimrc source ~/.vimrc
