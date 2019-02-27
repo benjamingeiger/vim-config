@@ -9,11 +9,12 @@ filetype off
 
 if has('win32') || has('win64')
 	let s:vimdir = $HOME . '/vimfiles/'
+	set rtp+=~/vimfiles/bundle/Vundle.vim
 else
 	let s:vimdir = $HOME . '/.vim/'
+	set rtp+=~/.vim/bundle/Vundle.vim
 endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin(s:vimdir . '/bundle')
 
 " Required for Vundle.
