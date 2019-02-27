@@ -92,22 +92,31 @@ filetype on
 let mapleader=","
 let g:mapleader=","
 
-exec "source " . s:vimdir . "/config/filetype.vim"
-exec "source " . s:vimdir . "/config/appearance.vim"
-exec "source " . s:vimdir . "/config/defaults.vim"
-exec "source " . s:vimdir . "/config/ui.vim"
-exec "source " . s:vimdir . "/config/options.vim"
-exec "source " . s:vimdir . "/config/commands.vim"
-exec "source " . s:vimdir . "/config/statusline.vim"
+function! SourceFromVimDirIfExists(file)
+	if filereadable(expand(s:vimdir . a:file))
+		exe 'source' s:vimdir . a:file
+	endif
+endfunction
 
-exec "source " . s:vimdir . "/config/easymotion.vim"
-exec "source " . s:vimdir . "/config/ultisnips.vim"
-exec "source " . s:vimdir . "/config/taglist.vim"
-exec "source " . s:vimdir . "/config/xterm.vim"
+call SourceFromVimDirIfExists("/config/filetype.vim")
+call SourceFromVimDirIfExists("/config/appearance.vim")
+call SourceFromVimDirIfExists("/config/defaults.vim")
+call SourceFromVimDirIfExists("/config/ui.vim")
+call SourceFromVimDirIfExists("/config/options.vim")
+call SourceFromVimDirIfExists("/config/commands.vim")
+call SourceFromVimDirIfExists("/config/statusline.vim")
 
-exec "source " . s:vimdir . "/config/folding.vim"
+call SourceFromVimDirIfExists("/config/easymotion.vim")
+call SourceFromVimDirIfExists("/config/ultisnips.vim")
+call SourceFromVimDirIfExists("/config/taglist.vim")
+call SourceFromVimDirIfExists("/config/xterm.vim")
 
-" exec "source " . s:vimdir . "/config/nerdtree.vim"
+call SourceFromVimDirIfExists("/config/folding.vim")
+
+"call SourceFromVimDirIfExists("/config/nerdtree.vim")
+
+
+call SourceFromVimDirIfExists("vimrc.local.vim")
 
 " Reload vimrc on save
 autocmd! bufwritepost .vimrc source ~/.vimrc
